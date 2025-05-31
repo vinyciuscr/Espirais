@@ -8,8 +8,8 @@ int main(){
 
     int x = 0, y = 0;
 
-    int variacao_x[7] = {-1, 0, 1, 1, 1, 0, -1};
-    int variacao_y[7] = {1, 1, 0, -1, 1, -1, -1};
+    int variacao_x[8] = {-1, 0, 1, 1, 1, 1, 0, -1};
+    int variacao_y[8] = {1, 1, 0, -1, 1, 0, -1, -1};
 
     int steps[8] = {2, 1, 1, 1, 1, 1, 2, 2};
     
