@@ -57,6 +57,6 @@ int main() {
         if(f == 0) break; // Sai do loop principal se ponto n foi encontrado
     }
 
-    printf("%d %d", x, y); // Imprime as coordenadas finais do ponto n
+    printf("(%d, %d)", x, y); // Imprime as coordenadas finais do ponto n
     return 0;
 }

@@ -83,6 +83,6 @@ int main() {
 
     }
 
-    printf("%d %d", x, y); // Imprime as coordenadas finais do ponto n
+    printf("(%d, %d)", x, y); // Imprime as coordenadas finais do ponto n
     return 0;
 }
