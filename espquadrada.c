@@ -3,63 +3,57 @@
 
 int main(){
 
+    int direcao;         // Indica a direção atual do movimento
+    int x = 0, y = 0;    // Coordenadas do ponto atual (iniciando na origem)
 
-    int direcao; //direção da "seta"
-    int x = 0, y = 0; //ponto incial
+    int step_size = 1;   // Quantidade de passos em uma mesma direção
+    int atual = 1;       // Contador de passos dentro da direção atual
+    int passagem = 0;    // Conta quantas direções diferentes já percorremos
+    int i = 0;           // Controla qual direção será seguida (módulo 4)
+    int ponto_atual = 0; // Conta quantos pontos já percorremos
+    int n;               // Índice do ponto alvo (entrada do usuário)
+    int f = 1;           // Flag de controle para encerrar o loop principal
 
-    int step_size = 1; // o quanto cada direção irá se repetir
-    int atual = 1; // variável auxiliar para a contagem dos steps
-    int passagem = 0; // contagem de direções para a cada duas aumentar o número de steps
-    int i = 0; // variável auxiliar
-    int ponto_atual = 0; // variável auxiliar para cálcular até a entrada n
-    int n; // entrada
-    int f = 1; //flag para o loop
+    scanf("%d", &n);     // Leitura da entrada (índice do ponto desejado)
 
-    scanf("%d",&n); //comando para entrada de n
+    while(f) {           // Loop principal: simula o avanço pela espiral
 
-
-    while(f){ //loop infinito
-
-    if(n == 0){ //caso n seja a origem
-        f = 0;
-        break;
-    }
-
-    direcao = i % 4; //como são quatro direções que formam um ciclo. O módulo 4 indicada qual direção estamos com base na ordem: cima, esquerda, baixo, direita
-
-        while(atual <= step_size){ //a variável faz o loop repetir até que o número de steps seja atingido
-            if (direcao == 0) { // dependendo da direção ocorre o incremento ou decremento do valor de x ou y
-                y = y + 1; 
-            }
-            if (direcao == 1) {
-                x = x - 1;  
-            }
-            if (direcao == 2) {
-                y = y - 1;  
-            }
-            if (direcao == 3) {
-                x = x + 1;  
-            }
-        ponto_atual++; // a cada incremento/decremento se avança um ponto
-        atual++; //o atual avança para a direção repetir até o número de steps
-        if(ponto_atual == n){ //condicional para verificar se n já foi atingido
-            f = 0; // caso seja verdadeiro, a flag irá passar a ser falsa e iremos sair do while
+        if(n == 0) {     // Caso especial: origem (0, 0)
+            f = 0;
             break;
         }
+
+        direcao = i % 4; // Define a direção atual (0: ↑, 1: ←, 2: ↓, 3: →)
+
+        // Executa os passos na direção atual
+        while(atual <= step_size) {
+            if (direcao == 0) y += 1;      // Cima
+            if (direcao == 1) x -= 1;      // Esquerda
+            if (direcao == 2) y -= 1;      // Baixo
+            if (direcao == 3) x += 1;      // Direita
+
+            ponto_atual++;   // Avança para o próximo ponto
+            atual++;         // Conta mais um passo nessa direção
+
+            if(ponto_atual == n) { // Se chegou no ponto n, encerra
+                f = 0;
+                break;
+            }
         }
 
-        passagem++; //o número de direções diferentes que andamos
+        passagem++; // Contabiliza que mudamos de direção
 
-        if(passagem % 2 == 0){ // a cada duas direções o número de steps é incrementado em 1
+        // A cada duas direções, aumenta o número de passos (step_size)
+        if(passagem % 2 == 0) {
             step_size++;
         }
 
-        atual = 1; //atual volta a ser 1 para poder auxiliar o novo número de steps
-        i++; //incremento para mudar o módulo de 4, logo a direção.
+        atual = 1; // Reinicia o contador de passos para a nova direção
+        i++;       // Avança para a próxima direção (mod 4)
 
     }
 
-    printf("%d %d", x, y); //imprime as coordenadas de n
+    printf("%d %d", x, y); // Imprime as coordenadas finais do ponto n
 
     return 0;
 }
